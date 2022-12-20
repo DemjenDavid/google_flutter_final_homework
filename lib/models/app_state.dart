@@ -1,4 +1,4 @@
- part of models;
+part of models;
 
 @freezed
 class AppState with _$AppState {

@@ -1,7 +1,6 @@
 import 'package:final_homework/models/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 import '../actions/index.dart';
@@ -18,20 +17,19 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _password = TextEditingController();
 
   void _onResponse(dynamic action) {
-   if(action is CreateUserError){
-     final Object error = action.error;
-     if(error is FirebaseAuthException){
-       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message??'Email already taken')));
-     }
-   }
-   else{
-     if(action is LoginError){
-       final Object error = action.error;
-       if(error is FirebaseAuthException){
-         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message??'User does not exist')));
-       }
-     }
-   }
+    if (action is CreateUserError) {
+      final Object error = action.error;
+      if (error is FirebaseAuthException) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message ?? 'Email already taken')));
+      }
+    } else {
+      if (action is LoginError) {
+        final Object error = action.error;
+        if (error is FirebaseAuthException) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message ?? 'User does not exist')));
+        }
+      }
+    }
   }
 
   @override

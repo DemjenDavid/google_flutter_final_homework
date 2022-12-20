@@ -10,22 +10,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UserContainer(
-        builder: (BuildContext context, AppUser? user){
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(user!.displayName),
-              actions: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.power_settings_new),
-                  onPressed: () {
-                    StoreProvider.of<AppState>(context).dispatch(const Logout());
-                  },
-                )
-              ],
-            ),
-          );
+    return UserContainer(builder: (BuildContext context, AppUser? user) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(user!.displayName),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.power_settings_new),
+              onPressed: () {
+                StoreProvider.of<AppState>(context).dispatch(const Logout());
+              },
+            )
+          ],
+        ),
+      );
     });
   }
-
 }

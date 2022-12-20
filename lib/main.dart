@@ -1,13 +1,9 @@
-import 'dart:html';
 
 import 'package:final_homework/data/auth_api.dart';
 import 'package:final_homework/epics/app_epics.dart';
 import 'package:final_homework/firebase_options.dart';
 import 'package:final_homework/presentation/chat_page.dart';
-import 'package:final_homework/presentation/container/user_container.dart';
 import 'package:final_homework/presentation/home.dart';
-import 'package:final_homework/presentation/home_page.dart';
-import 'package:final_homework/presentation/login_page.dart';
 import 'package:final_homework/reducer/reducer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,4 +51,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

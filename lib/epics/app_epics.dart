@@ -3,7 +3,7 @@ import 'package:redux_epics/redux_epics.dart';
 import '../models/index.dart';
 import 'auth_epics.dart';
 
-class AppEpics{
+class AppEpics {
   const AppEpics({required this.authApi});
   final AuthApi authApi;
 
@@ -12,5 +12,4 @@ class AppEpics{
       AuthEpics(authApi).epic,
     ]);
   }
-
 }

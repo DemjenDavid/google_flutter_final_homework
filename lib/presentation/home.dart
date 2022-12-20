@@ -10,11 +10,10 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UserContainer(builder: (BuildContext context, AppUser? user){
-      if(user == null){
+    return UserContainer(builder: (BuildContext context, AppUser? user) {
+      if (user == null) {
         return const LoginPage();
-      }
-      else{
+      } else {
         return const HomePage();
       }
     });
