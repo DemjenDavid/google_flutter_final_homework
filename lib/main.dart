@@ -1,4 +1,3 @@
-
 import 'package:final_homework/data/auth_api.dart';
 import 'package:final_homework/epics/app_epics.dart';
 import 'package:final_homework/firebase_options.dart';
