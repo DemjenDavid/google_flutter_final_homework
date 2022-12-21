@@ -20,7 +20,7 @@ class LocationEpics {
   Stream<dynamic> _getLocationStart(Stream<GetLocationStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetLocationStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => api.getLocation())
+          .asyncMap((_) => api.getLocation(store.state.auth.user!.uid))
           .map((UserLocation? location) => GetLocation.successful(location))
           .onErrorReturnWith((Object error, StackTrace stackTrace) => GetLocation.error(error, stackTrace));
     });

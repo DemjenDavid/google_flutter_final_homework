@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_homework/actions/index.dart';
 import 'package:final_homework/data/auth_api.dart';
 import 'package:final_homework/data/user_location_api.dart';
@@ -17,12 +18,12 @@ import 'package:redux_epics/redux_epics.dart';
 import 'models/index.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   final AuthApi authApi = AuthApi(auth: FirebaseAuth.instance);
-  final LocationApi locApi = LocationApi(location: Location());
+  final LocationApi locApi = LocationApi(location: Location(), firestore: FirebaseFirestore.instance);
   final AppEpics epics = AppEpics(authApi: authApi, locApi: locApi);
   final StreamController<dynamic> controller = StreamController<dynamic>();
   final Store<AppState> store = Store<AppState>(
@@ -30,15 +31,15 @@ Future<void> main() async{
     initialState: const AppState(),
     middleware: <Middleware<AppState>>[
       EpicMiddleware<AppState>(epics.epic),
-      (Store<AppState> store, dynamic action, NextDispatcher next){
+      (Store<AppState> store, dynamic action, NextDispatcher next) {
         next(action);
         controller.add(action);
       },
     ],
   );
   store.dispatch(const InitializeUser());
-  await controller.stream.
-      where((dynamic action)=> action is InitializeUserSuccessful || action is InitializeUserError)
+  await controller.stream
+      .where((dynamic action) => action is InitializeUserSuccessful || action is InitializeUserError)
       .first;
   runApp(MyApp(store: store));
 }
