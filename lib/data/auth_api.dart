@@ -7,7 +7,7 @@ class AuthApi {
 
   Future<AppUser?> getUser() async {
     final User? user = auth.currentUser;
-    if(user == null) {
+    if (user == null) {
       return null;
     }
 
@@ -15,7 +15,6 @@ class AuthApi {
   }
 
   AppUser _convertUser(User user) {
-
     return AppUser(uid: user.uid, email: user.email!, displayName: user.displayName ?? user.email!.split('@').first);
   }
 

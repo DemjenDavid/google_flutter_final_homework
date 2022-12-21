@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -27,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return UserLocationContainer(
-      builder: (BuildContext context, UserLocation? location){
+      builder: (BuildContext context, UserLocation? location) {
         return UserContainer(builder: (BuildContext context, AppUser? user) {
           return Scaffold(
             appBar: AppBar(
@@ -42,9 +41,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             body: Center(
-              child: location == null
-                ? const CircularProgressIndicator()
-                : Text("$location"),
+              child: location == null ? const CircularProgressIndicator() : Text("$location"),
             ),
           );
         });

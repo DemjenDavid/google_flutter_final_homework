@@ -1,7 +1,7 @@
 part of actions;
 
 @freezed
-class GetLocation with _$GetLocation  {
+class GetLocation with _$GetLocation {
   const factory GetLocation() = GetLocationStart;
 
   const factory GetLocation.successful(UserLocation? location) = GetLocationSuccessful;
