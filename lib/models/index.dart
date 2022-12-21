@@ -7,3 +7,5 @@ part 'index.g.dart';
 part 'index.freezed.dart';
 part 'auth/auth_state.dart';
 part 'auth/app_user.dart';
+part 'location/user_location.dart';
+part 'location/location_state.dart';

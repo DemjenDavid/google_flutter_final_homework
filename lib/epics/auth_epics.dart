@@ -15,6 +15,7 @@ class AuthEpics {
       TypedEpic<AppState, LoginStart>(_loginStart),
       TypedEpic<AppState, LogoutStart>(_logoutStart),
       TypedEpic<AppState, CreateUserStart>(_createUserStart),
+      TypedEpic<AppState, InitializeUserStart>(_initializeUser),
     ]);
   }
 
@@ -44,6 +45,15 @@ class AuthEpics {
           .map((AppUser user) => CreateUser.successful(user))
           .onErrorReturnWith((Object error, StackTrace stackTrace) => CreateUser.error(error, stackTrace))
           .doOnData(action.response);
+    });
+  }
+
+  Stream<void> _initializeUser(Stream<InitializeUserStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((InitializeUserStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => authApi.getUser())
+          .map((AppUser? user) => InitializeUser.successful(user))
+          .onErrorReturnWith((Object error, StackTrace stackTrace) => InitializeUser.error(error, stackTrace));
     });
   }
 }
