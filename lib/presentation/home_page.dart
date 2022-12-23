@@ -30,7 +30,12 @@ class _HomePageState extends State<HomePage> {
     return LocationsContainer(
       builder: (BuildContext context, List<UserLocation>? locations) {
         return UserContainer(builder: (BuildContext context, AppUser? user) {
-          final UserLocation location = locations!.where((UserLocation element) => element.uid == user!.uid).first;
+          UserLocation? location;
+          for(UserLocation loc in locations!){
+            if(loc.uid == user!.uid) {
+              location = loc;
+            }
+          }
           return Scaffold(
             appBar: AppBar(
               title: Text(user!.displayName),
@@ -58,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                               Marker(
                                 point: LatLng(loc.lat, loc.lng),
                                 builder: (BuildContext context) {
-                                  if (loc.uid == location.uid) {
+                                  if (loc.uid == location!.uid) {
                                     return const Icon(
                                       Icons.location_history,
                                       color: Colors.red,

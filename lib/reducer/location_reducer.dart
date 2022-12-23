@@ -12,6 +12,6 @@ LocationState _getLocationSuccessful(LocationState state, GetLocationSuccessful 
   return state.copyWith(location: action.location);
 }
 
-LocationState _onLocationsEvent(LocationState state, action) {
+LocationState _onLocationsEvent(LocationState state, OnLocationsEvent action) {
   return state.copyWith(locations: action.locations);
 }
