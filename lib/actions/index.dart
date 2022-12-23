@@ -9,5 +9,6 @@ part 'auth/logout.dart';
 part 'auth/create_user.dart';
 part 'auth/initialize_user.dart';
 part 'location/get_location.dart';
+part 'location/listen_for_locations.dart';
 
 typedef ActionResponse = void Function(dynamic action);

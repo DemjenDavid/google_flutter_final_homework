@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_homework/models/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthApi {
-  const AuthApi({required this.auth});
+  const AuthApi({required this.auth, required this.firestore});
   final FirebaseAuth auth;
+  final FirebaseFirestore firestore;
 
   Future<AppUser?> getUser() async {
     final User? user = auth.currentUser;
@@ -31,11 +33,22 @@ class AuthApi {
     final UserCredential credentials = await auth.signInWithEmailAndPassword(email: email, password: password);
     final User user = credentials.user!;
 
+    _checkUserExists(user);
     return _convertUser(user);
   }
 
   Future<void> logout() async {
     // sign out
     await auth.signOut();
+  }
+
+  Future<void> _checkUserExists(User user) async {
+    final DocumentSnapshot<Map<String, dynamic>> doc = await firestore.collection('users').doc(user.uid).get();
+    if(doc.exists){
+      return;
+    }
+    final AppUser appUser = _convertUser(user);
+    await firestore.collection('users').doc(user.uid).set(appUser.toJson());
+
   }
 }

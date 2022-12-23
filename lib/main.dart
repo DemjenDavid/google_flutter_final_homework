@@ -21,9 +21,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  final AuthApi authApi = AuthApi(auth: FirebaseAuth.instance);
-  final LocationApi locApi = LocationApi(location: Location(), firestore: FirebaseFirestore.instance);
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final AuthApi authApi = AuthApi(auth: FirebaseAuth.instance, firestore: firestore);
+  final LocationApi locApi = LocationApi(location: Location(), firestore: firestore);
   final AppEpics epics = AppEpics(authApi: authApi, locApi: locApi);
   final StreamController<dynamic> controller = StreamController<dynamic>();
   final Store<AppState> store = Store<AppState>(
