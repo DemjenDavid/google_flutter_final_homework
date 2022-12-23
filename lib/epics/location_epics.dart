@@ -14,15 +14,28 @@ class LocationEpics {
   Epic<AppState> get epic {
     return combineEpics(<Epic<AppState>>[
       TypedEpic<AppState, GetLocationStart>(_getLocationStart),
+      _listenForLocationsStart,
     ]);
   }
 
-  Stream<dynamic> _getLocationStart(Stream<GetLocationStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((GetLocationStart action) {
-      return Stream<void>.value(null)
-          .asyncMap((_) => api.getLocation(store.state.auth.user!.uid))
-          .map((UserLocation? location) => GetLocation.successful(location))
+  Stream<dynamic> _getLocationStart(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<GetLocationStart>().flatMap((GetLocationStart action) {
+      return Stream<void>.value(null) //
+          .flatMap<dynamic>((_) => api.getLocation(store.state.auth.user!.uid))
+          .takeUntil(actions.whereType<ListenForLocationsDone>())
+          .ignoreElements()
+          .cast<void>()
           .onErrorReturnWith((Object error, StackTrace stackTrace) => GetLocation.error(error, stackTrace));
+    });
+  }
+
+  Stream<dynamic> _listenForLocationsStart(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<ListenForLocationsStart>().flatMap((ListenForLocationsStart action) {
+      return Stream<void>.value(null)
+          .flatMap((_) => api.listenLocations())
+          .map((List<UserLocation> locations) => ListenForLocations.event(locations))
+          .takeUntil(actions.whereType<ListenForLocationsDone>())
+          .onErrorReturnWith((Object error, StackTrace stackTrace) => ListenForLocations.error(error, stackTrace));
     });
   }
 }

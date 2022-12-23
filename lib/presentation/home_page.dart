@@ -48,7 +48,6 @@ class _HomePageState extends State<HomePage> {
                   ? const CircularProgressIndicator()
                   : FlutterMap(
                       options: MapOptions(center: LatLng(location.lat, location.lng), zoom: 7),
-
                       children: <Widget>[
                         TileLayer(
                           urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -57,13 +56,18 @@ class _HomePageState extends State<HomePage> {
                           markers: <Marker>[
                             for (final UserLocation loc in locations)
                               Marker(
-                                point: LatLng(loc.lat,loc.lng),
-                                builder: (BuildContext context){
-                                  if(loc.uid == location.uid) {
-                                    return const Icon(Icons.location_history, color: Colors.red,);
-
+                                point: LatLng(loc.lat, loc.lng),
+                                builder: (BuildContext context) {
+                                  if (loc.uid == location.uid) {
+                                    return const Icon(
+                                      Icons.location_history,
+                                      color: Colors.red,
+                                    );
                                   } else {
-                                    return const Icon(Icons.location_history, color: Colors.blue,);
+                                    return const Icon(
+                                      Icons.location_history,
+                                      color: Colors.blue,
+                                    );
                                   }
                                 },
                               )

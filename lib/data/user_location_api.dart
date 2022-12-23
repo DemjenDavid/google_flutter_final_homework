@@ -35,13 +35,11 @@ class LocationApi {
     });
   }
 
-  Stream<List<UserLocation>> listenLocations(){
-    return firestore.collection('locations').snapshots()
-        .map((QuerySnapshot<Map<String, dynamic>> snapshot){
-          return snapshot.docs
-              .map((QueryDocumentSnapshot<Map<String, dynamic>> doc)=> UserLocation.fromJson(doc.data()))
-              .toList();
-      });
+  Stream<List<UserLocation>> listenLocations() {
+    return firestore.collection('locations').snapshots().map((QuerySnapshot<Map<String, dynamic>> snapshot) {
+      return snapshot.docs
+          .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) => UserLocation.fromJson(doc.data()))
+          .toList();
+    });
   }
-
 }

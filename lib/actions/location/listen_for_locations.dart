@@ -1,7 +1,7 @@
 part of actions;
 
 @freezed
-class ListenForLocations with _$ListenForLocations  {
+class ListenForLocations with _$ListenForLocations {
   const factory ListenForLocations.start() = ListenForLocationsStart;
 
   const factory ListenForLocations.done() = ListenForLocationsDone;

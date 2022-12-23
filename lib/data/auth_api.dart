@@ -44,11 +44,10 @@ class AuthApi {
 
   Future<void> _checkUserExists(User user) async {
     final DocumentSnapshot<Map<String, dynamic>> doc = await firestore.collection('users').doc(user.uid).get();
-    if(doc.exists){
+    if (doc.exists) {
       return;
     }
     final AppUser appUser = _convertUser(user);
     await firestore.collection('users').doc(user.uid).set(appUser.toJson());
-
   }
 }
