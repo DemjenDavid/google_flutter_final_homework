@@ -3,7 +3,6 @@ import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/transformers.dart';
 
 import '../actions/index.dart';
-import '../data/auth_api.dart';
 import '../models/index.dart';
 
 class LocationEpics {

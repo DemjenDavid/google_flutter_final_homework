@@ -4,10 +4,8 @@ import 'package:final_homework/presentation/container/user_container.dart';
 import 'package:final_homework/presentation/container/users_container.dart';
 import 'package:final_homework/presentation/drawer/app_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'package:latlong2/latlong.dart';
 import '../actions/index.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,18 +30,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return LocationsContainer(
       builder: (BuildContext context, List<UserLocation>? locations) {
-        return UsersContainer(builder: (BuildContext context, List<AppUser>? userList){
+        return UsersContainer(builder: (BuildContext context, List<AppUser>? userList) {
           return UserContainer(builder: (BuildContext context, AppUser? user) {
-            UserLocation? location;
-            for(UserLocation loc in locations!){
-              if(loc.uid == user!.uid) {
-                location = loc;
-              }
-            }
             return Scaffold(
-              drawer: MyDrawer(user:user!, userList: userList!,),
+              drawer: MyDrawer(
+                user: user!,
+                userList: userList!,
+              ),
               appBar: AppBar(
-                title: Text(user!.displayName),
+                title: Text(user.displayName),
                 actions: <Widget>[
                   IconButton(
                     icon: const Icon(Icons.power_settings_new),

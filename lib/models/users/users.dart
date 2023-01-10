@@ -4,7 +4,7 @@ part of models;
 class UsersState with _$UsersState {
   const factory UsersState({
     @Default(<AppUser>[]) List<AppUser> users,
-}) = UsersState$;
+  }) = UsersState$;
 
   factory UsersState.fromJson(Map<dynamic, dynamic> json) => _$UsersStateFromJson(Map<String, dynamic>.from(json));
 }

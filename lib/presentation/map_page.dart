@@ -41,9 +41,12 @@ class _MapPageState extends State<MapPage> {
               }
             }
             return Scaffold(
-              drawer: MyDrawer(user: user!, userList: userList!,),
+              drawer: MyDrawer(
+                user: user!,
+                userList: userList!,
+              ),
               appBar: AppBar(
-                title: Text(user!.displayName),
+                title: Text(user.displayName),
                 actions: <Widget>[
                   IconButton(
                     icon: const Icon(Icons.power_settings_new),
@@ -77,7 +80,7 @@ class _MapPageState extends State<MapPage> {
                                       return GestureDetector(
                                         onTap: () {
                                           final AppUser user =
-                                              userList!.where((AppUser element) => element.uid == loc.uid).first;
+                                              userList.where((AppUser element) => element.uid == loc.uid).first;
                                           setState(() {
                                             showDialog(
                                                 context: context,
@@ -93,9 +96,14 @@ class _MapPageState extends State<MapPage> {
                                                             user.imageUrl != null
                                                                 ? Image.network(user.imageUrl!)
                                                                 : const Text('<no img>'),
-                                                            const SizedBox(height: 10,),
-                                                            Text(user.displayName, style: const TextStyle(fontSize: 20)),
-                                                            const SizedBox(height: 10,),
+                                                            const SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                            Text(user.displayName,
+                                                                style: const TextStyle(fontSize: 20)),
+                                                            const SizedBox(
+                                                              height: 10,
+                                                            ),
                                                             Text(user.email),
                                                           ],
                                                         )),

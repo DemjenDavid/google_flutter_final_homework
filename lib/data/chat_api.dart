@@ -16,13 +16,9 @@ class ChatApi {
   }
 
   Future<void> sendMessage({required AppUser user, required String text}) async {
-    print("sending..");
-    final Message message = Message(
-        uid: user.uid, message: text, displayName: user.displayName, timestamp: Timestamp.now().toString());
+    final Message message =
+        Message(uid: user.uid, message: text, displayName: user.displayName, timestamp: Timestamp.now().toString());
 
     firestore.collection('messages').doc('${message.displayName}${message.timestamp}').set(message.toJson());
   }
-
-
-
 }

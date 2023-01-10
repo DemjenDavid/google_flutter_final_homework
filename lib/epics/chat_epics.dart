@@ -5,7 +5,7 @@ import 'package:rxdart/transformers.dart';
 import '../data/chat_api.dart';
 import '../models/index.dart';
 
-class ChatEpics{
+class ChatEpics {
   const ChatEpics(this.chatApi);
   final ChatApi chatApi;
   Epic<AppState> get epic {
@@ -33,5 +33,4 @@ class ChatEpics{
           .onErrorReturnWith((Object error, StackTrace stackTrace) => ListenForMessages.error(error, stackTrace));
     });
   }
-
 }

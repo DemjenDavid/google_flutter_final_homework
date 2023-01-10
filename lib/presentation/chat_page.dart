@@ -1,12 +1,10 @@
 import 'package:final_homework/presentation/container/chat_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 import '../actions/index.dart';
 import '../models/index.dart';
-import 'container/location_container.dart';
 import 'container/user_container.dart';
 import 'container/users_container.dart';
 import 'drawer/app_drawer.dart';
@@ -42,7 +40,7 @@ class _ChatPageState extends State<ChatPage> {
                 userList: userList!,
               ),
               appBar: AppBar(
-                title: Text(user!.displayName),
+                title: Text(user.displayName),
                 actions: <Widget>[
                   IconButton(
                     icon: const Icon(Icons.power_settings_new),
@@ -56,16 +54,23 @@ class _ChatPageState extends State<ChatPage> {
               body: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Stack(
-                  children: [
+                  children: <Widget>[
                     ListView.builder(
-                      itemCount: messages!.length,
-                      padding: EdgeInsets.only(top: 10,bottom: 10),
-                      itemBuilder: (context, index){
+                      itemCount: messages != null ? messages.length : 0,
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      itemBuilder: (BuildContext context, int index) {
                         return SizedBox(
                           child: Row(
-                            children: [
-                              Text('${messages![index].displayName} : ', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                              Text(messages![index].message, style: const TextStyle(fontSize: 20),maxLines: 10,),
+                            children: <Widget>[
+                              Text(
+                                '${messages![index].displayName} : ',
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              Text(
+                                messages[index].message,
+                                style: const TextStyle(fontSize: 20),
+                                maxLines: 10,
+                              ),
                             ],
                           ),
                         );
@@ -75,7 +80,7 @@ class _ChatPageState extends State<ChatPage> {
                       child: Align(
                         alignment: FractionalOffset.bottomCenter,
                         child: Row(
-                          children: [
+                          children: <Widget>[
                             Expanded(
                               child: TextField(
                                 onChanged: (String input) {

@@ -1,7 +1,7 @@
 part of actions;
 
 @freezed
-class ImageApi with _$ImageApi  {
+class ImageApi with _$ImageApi {
   const factory ImageApi() = ImageApiStart;
 
   const factory ImageApi.successful(List<ApiImage> images) = ImageApiSuccessful;

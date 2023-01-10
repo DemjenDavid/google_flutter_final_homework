@@ -1,9 +1,6 @@
-import 'package:final_homework/actions/index.dart';
 import 'package:final_homework/models/index.dart';
 import 'package:final_homework/presentation/container/users_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
 
 class MyDrawer extends Drawer {
   const MyDrawer({super.key, required this.user, required this.userList});
@@ -64,7 +61,7 @@ StatelessWidget getDrawer(AppUser user) {
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
-      children: [
+      children: <Widget>[
         UserAccountsDrawerHeader(
           decoration: const BoxDecoration(color: Colors.indigoAccent),
           accountName: Text(user.displayName),

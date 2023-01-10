@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => const Home(),
           '/chat': (BuildContext context) => const ChatPage(),
-          '/map':(BuildContext context) => const MapPage(),
+          '/map': (BuildContext context) => const MapPage(),
         },
       ),
     );
