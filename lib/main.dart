@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_homework/actions/index.dart';
 import 'package:final_homework/data/auth_api.dart';
+import 'package:final_homework/data/chat_api.dart';
 import 'package:final_homework/data/user_location_api.dart';
 import 'package:final_homework/epics/app_epics.dart';
 import 'package:final_homework/firebase_options.dart';
 import 'package:final_homework/presentation/chat_page.dart';
 import 'package:final_homework/presentation/home.dart';
+import 'package:final_homework/presentation/map_page.dart';
 import 'package:final_homework/reducer/reducer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,7 +26,8 @@ Future<void> main() async {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final AuthApi authApi = AuthApi(auth: FirebaseAuth.instance, firestore: firestore);
   final LocationApi locApi = LocationApi(location: Location(), firestore: firestore);
-  final AppEpics epics = AppEpics(authApi: authApi, locApi: locApi);
+  final ChatApi chatApi = ChatApi(firestore: firestore);
+  final AppEpics epics = AppEpics(authApi: authApi, locApi: locApi, chatApi: chatApi);
   final StreamController<dynamic> controller = StreamController<dynamic>();
   final Store<AppState> store = Store<AppState>(
     reducer,
@@ -60,7 +63,8 @@ class MyApp extends StatelessWidget {
         ),
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => const Home(),
-          '/chat': (BuildContext context) => const ChatPage()
+          '/chat': (BuildContext context) => const ChatPage(),
+          '/map':(BuildContext context) => const MapPage(),
         },
       ),
     );

@@ -50,4 +50,13 @@ class AuthApi {
     final AppUser appUser = _convertUser(user);
     await firestore.collection('users').doc(user.uid).set(appUser.toJson());
   }
+
+  Stream<List<AppUser>> getUsers(){
+    return firestore.collection('users').snapshots().map((QuerySnapshot<Map<String, dynamic>> snapshot) {
+      return snapshot.docs
+          .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) => AppUser.fromJson(doc.data()))
+          .toList();
+    });
+
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../models/index.dart';
@@ -10,12 +11,14 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UserContainer(builder: (BuildContext context, AppUser? user) {
-      if (user == null) {
-        return const LoginPage();
-      } else {
-        return const HomePage();
-      }
-    });
+    return Scaffold(
+      body: UserContainer(builder: (BuildContext context, AppUser? user) {
+        if (user == null) {
+          return const LoginPage();
+        } else {
+          return const HomePage();
+        }
+      }),
+    );
   }
 }

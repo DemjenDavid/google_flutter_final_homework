@@ -16,6 +16,7 @@ class AuthEpics {
       TypedEpic<AppState, LogoutStart>(_logoutStart),
       TypedEpic<AppState, CreateUserStart>(_createUserStart),
       TypedEpic<AppState, InitializeUserStart>(_initializeUser),
+      _listenForUsersStart,
     ]);
   }
 
@@ -54,6 +55,16 @@ class AuthEpics {
           .asyncMap((_) => authApi.getUser())
           .map((AppUser? user) => InitializeUser.successful(user))
           .onErrorReturnWith((Object error, StackTrace stackTrace) => InitializeUser.error(error, stackTrace));
+    });
+  }
+
+  Stream<dynamic> _listenForUsersStart(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<ListenForUsersStart>().flatMap((ListenForUsersStart action) {
+      return Stream<void>.value(null)
+          .flatMap((_) => authApi.getUsers())
+          .map((List<AppUser> users) => ListenForUsers.event(users))
+          .takeUntil(actions.whereType<ListenForUsersDone>())
+          .onErrorReturnWith((Object error, StackTrace stackTrace) => ListenForUsers.error(error, stackTrace));
     });
   }
 }
