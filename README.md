@@ -1,16 +1,8 @@
-# final_homework
+Final app with Map, Chat and User details
+![image](https://user-images.githubusercontent.com/45183981/211591612-337bfd3c-5395-48af-81c0-73923842f930.png)
+![image](https://user-images.githubusercontent.com/45183981/211591709-33de6891-7bd5-46f6-8cf1-f1d1478b9bd3.png)
+![image](https://user-images.githubusercontent.com/45183981/211591782-32f88f01-afc4-4696-ac29-9fa21d322a8c.png)
+![image](https://user-images.githubusercontent.com/45183981/211591888-7108b752-f25b-47ff-8abc-ba30438681dc.png)
+![image](https://user-images.githubusercontent.com/45183981/211591960-b98d8b3d-5a01-4db4-80a7-7bedaa53e3ef.png)
+![image](https://user-images.githubusercontent.com/45183981/211592061-a4436b84-1b60-4d68-a322-ff1916cf108d.png)
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
