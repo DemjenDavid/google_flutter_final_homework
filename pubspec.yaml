@@ -21,6 +21,7 @@ dependencies:
   cloud_firestore: ^4.2.0
   json_annotation: ^4.7.0
   flutter_map: ^3.1.0
+  latlong2: ^0.8.1
   location: ^4.4.0
   redux: ^5.0.0
   redux_epics: ^0.15.1

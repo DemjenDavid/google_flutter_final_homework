@@ -60,7 +60,7 @@ Map<String, dynamic> _$$UserLocation$ToJson(_$UserLocation$ instance) => <String
 _$LocationState$ _$$LocationState$FromJson(Map<String, dynamic> json) => _$LocationState$(
       location: json['location'] == null ? null : UserLocation.fromJson(json['location'] as Map<String, dynamic>),
       locations: (json['locations'] as List<dynamic>?)
-              ?.map((e) => UserLocation.fromJson(e as Map<String, dynamic>))
+              ?.map((dynamic e) => UserLocation.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <UserLocation>[],
     );
@@ -111,10 +111,13 @@ Map<String, dynamic> _$$UnsplashUser$ToJson(_$UnsplashUser$ instance) => <String
     };
 
 _$ImageState$ _$$ImageState$FromJson(Map<String, dynamic> json) => _$ImageState$(
-      favorites:
-          (json['favorites'] as List<dynamic>?)?.map((e) => ApiImage.fromJson(e as Map<String, dynamic>)).toList() ??
-              const <ApiImage>[],
-      images: (json['images'] as List<dynamic>?)?.map((e) => ApiImage.fromJson(e as Map<String, dynamic>)).toList() ??
+      favorites: (json['favorites'] as List<dynamic>?)
+              ?.map((dynamic e) => ApiImage.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <ApiImage>[],
+      images: (json['images'] as List<dynamic>?)
+              ?.map((dynamic e) => ApiImage.fromJson(e as Map<String, dynamic>))
+              .toList() ??
           const <ApiImage>[],
     );
 
@@ -124,8 +127,9 @@ Map<String, dynamic> _$$ImageState$ToJson(_$ImageState$ instance) => <String, dy
     };
 
 _$UsersState$ _$$UsersState$FromJson(Map<String, dynamic> json) => _$UsersState$(
-      users: (json['users'] as List<dynamic>?)?.map((e) => AppUser.fromJson(e as Map<String, dynamic>)).toList() ??
-          const <AppUser>[],
+      users:
+          (json['users'] as List<dynamic>?)?.map((dynamic e) => AppUser.fromJson(e as Map<String, dynamic>)).toList() ??
+              const <AppUser>[],
     );
 
 Map<String, dynamic> _$$UsersState$ToJson(_$UsersState$ instance) => <String, dynamic>{
@@ -147,9 +151,10 @@ Map<String, dynamic> _$$Message$ToJson(_$Message$ instance) => <String, dynamic>
     };
 
 _$ChatState$ _$$ChatState$FromJson(Map<String, dynamic> json) => _$ChatState$(
-      messages:
-          (json['messages'] as List<dynamic>?)?.map((e) => Message.fromJson(e as Map<String, dynamic>)).toList() ??
-              const <Message>[],
+      messages: (json['messages'] as List<dynamic>?)
+              ?.map((dynamic e) => Message.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Message>[],
     );
 
 Map<String, dynamic> _$$ChatState$ToJson(_$ChatState$ instance) => <String, dynamic>{
